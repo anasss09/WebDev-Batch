@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    /* border:1px solid black */
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: 100;
+    margin: 15px 0;
+    margin-bottom: 30px;
+}
+
+.inp {
+    width: 80%;
+    height: 50px;
+    font-size: 25px;
+    padding-left: 10px;
+    /* margin-bottom: 20px; */
+}
+
+.btn {
+    height: 55px;
+    width: 16.9%;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    font-size: 25px;
+    background-color: purple;
+    color: white;
+
+}
+
+.taskItem {
+    padding-bottom: 10px;
+    font-size: 25px;
+}
+
+.taskContent {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.btngrp {
+    display: flex;
+    gap: 0 10px;
+    padding-bottom: 10px;
+}
+
+.Tbtn {
+    font-size: 30px;
+    height: 50px;
+    width: 50px;
+    background-color: purple;
+    color: white;
+    cursor: pointer;
+    
+}

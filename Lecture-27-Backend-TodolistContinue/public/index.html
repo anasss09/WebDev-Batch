@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Todo App</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Backend Todo List App</h1>
+
+        <form action="/todos" method="POST" class="form-todo">
+            <input type="text" name="task" placeholder="Enter task.." class="inp">
+            <button class="btn" type="submit">Add Task</button>
+        </form>
+
+        <ul class="taskList">
+            
+        </ul>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

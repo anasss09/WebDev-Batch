@@ -1,0 +1,76 @@
+/* .container {
+    width: 90%;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.Weather_inp:focus {
+  outline: none;
+  background: none;
+  box-shadow: none;
+}
+
+.Weather_inp {
+    width: 20%;
+    margin: auto;
+    border: none;
+    font-size: 30px;
+    /* background-color: skyblue; */
+/* } */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-image: url('https://images.unsplash.com/photo-1501973801540-537f08ccae7d?auto=format&fit=crop&w=1950&q=80');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.4); /* Dark transparent layer */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.15); /* Frosted glass effect */
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  color: #fff;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.Weather_inp {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  outline: none;
+}
+
+.weather-box p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}

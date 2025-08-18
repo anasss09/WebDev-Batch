@@ -1,0 +1,25 @@
+## Strongly typed vs Weakly typed
+
+Strongly in jisme fixed hota h example: int, float, char
+
+Weakly typed jisme fix nhi hota example x=10 
+
+Note: koi bhi language 100% strongly nhi hoti
+
+### Statically datatype and Dynamically datatype
+
+static = bigger value ko update nhi kr sakta jese. double me int store ho sakta h but int me double nhi
+
+Dynamic datatype= int to string bhi convert kr sakte h
+
+---
+
+JS is the Dynamically types and Weakly typed
+
+Variable (3type) = var, let, const. 
+
+Datatype (10type) = Number, String, Function, Array, Object, bigInt, null, Symbol, undefined,  boolen
+
+---
+
+Command Linr input in  JS: process.argv

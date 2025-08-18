@@ -1,0 +1,140 @@
+1. First GO to website "npm.js mongodb" and Copy the code.
+    Way 1.
+    -   const { MongoClient } = require('mongodb');
+
+        // Connection URL
+        const url = 'mongodb://localhost:27017';
+        const client = new MongoClient(url);
+
+        let cbDB = undefined
+
+        async function main() {
+            return client.connect().then((client) => {
+                cbDB = client.db('codingBlocks')
+            })
+        }
+
+        function getDB() {
+            if(cbDB != undefined) return cbDB;
+            return null;
+        }
+
+
+module.exports.mongoConnect = main;
+module.exports.getDB = getDB
+
+    Way 2.
+
+    -   const { MongoClient } = require('mongodb');
+
+        // Connection URL
+        const url = 'mongodb://localhost:27017';
+        const client = new MongoClient(url);
+
+        let cbDB;
+
+        async function main() {
+            try{
+                await client.connect();
+                console.log('Connected successfully to server');
+                cbDB = client.db('codingBlocks');
+                return 'done.';
+            } catch(err) {
+                console.log(`ERROE OCCURED!! ${err}`);
+            }
+        }
+
+        function getDB() {
+            if(cbDB != undefined) return cbDB;
+            return null;
+        }
+
+        module.exports.mongoConnect = main
+        module.exports.getDb = getDB
+
+2. Connect in "app.js" file by write:
+    Way 1. 
+
+    -   mongoConnect()
+        .then(() => {
+                app.listen(PORT, () => {
+                console.log(`localhost:${PORT}`);
+            })
+        }).catch((err) => {
+            console.log(`Error Occured !:${err}`);
+        })
+
+    Way 2.
+        async function ConnectionDB() {
+            try{
+                await mongoConnect()
+
+                app.listen(PORT, () => {
+                    console.log(`localhost:${PORT}`); 
+                })
+            } catch(err) {
+                console.log(err);
+            }
+        }
+
+        ConnectionDB()
+
+3. Make API : 
+
+    // Get Data
+    app.get('/student',async (req,res) => {
+        let db = getDb()
+        let Student = db.collection('Student')
+        let Sdata = await Student.find().toArray()
+
+        res.send({
+            data: Sdata
+        })
+    })
+    // Create Data
+    app.post('/student',async (req,res) => {
+        let {name, age, marks, subject} = req.body
+        let db = getDb();
+        let Student = db.collection('Student')
+        let Sdata = await Student.insertOne({
+            name,
+            age,
+            subject,
+            marks
+        })
+        res.send({
+            massage:"Data Inserted Successfully",
+            data: Sdata
+        })
+    })
+    // Update Data
+    app.post('/update',async (req,res) => {
+        let {name, age, marks, subject} = req.body
+        let db = getDb()
+        let Student = db.collection('Student')
+        let Sdata = await Student.updateOne({name}, {
+            $set:{
+                age,
+                subject,
+                marks
+            }
+        })
+
+        res.send({
+            massage: "Student updated Successfully",
+            data: Sdata
+        })
+    })
+    // Delete Data
+    app.post('/delete',async (req,res) => {
+        let {name} = req.body
+        let db = getDb()
+        let Student = db.collection('Student')
+        let Sdata = await Student.deleteOne({name})
+
+        res.send({
+            massage:"Student Deleted Successfully",
+            data: Sdata
+        })
+    })
+

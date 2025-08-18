@@ -1,0 +1,80 @@
+CounterAction.js
+function increment() {
+	return {
+		type: "increment/counter",
+	};
+}
+
+function decrement() {
+	return {
+		type: "increment/counter",
+	};
+}
+
+export { increment, decrement };
+
+CounterReducer.js
+let initialState = 0;
+function CounterReducer(state = initialState, action) {
+    switch(action.type) {
+        case 'increment/counter':
+            return state + 1;
+        case 'decrement/counter':
+            return state - 1;
+        default:
+            return state
+    }
+}
+
+export default CounterReducer;
+
+rootReducer.js
+import { combineReducers } from "redux";
+import CounterReducer from "./CounterReducer";
+
+const rootReducer = combineReducers({
+    CounterReducer
+})
+
+export default rootReducer;
+
+store.js
+import { createStore } from "redux";
+import rootReducer from "../reduce/rootReducer";
+
+const store = createStore(rootReducer)
+
+export default store;
+
+App.js
+import "./App.css";
+import Counter from "./Counter";
+
+function App() {
+	return (
+    <>
+      <Counter />
+    </>
+  )
+}
+
+export default App;
+
+index.js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import store from "./store/storage";
+import { Provider } from "react-redux";
+
+store.subscribe(() => store.getState());
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+	<React.StrictMode>
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</React.StrictMode>
+);

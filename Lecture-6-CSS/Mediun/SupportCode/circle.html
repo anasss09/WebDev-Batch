@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>circle</title>
+    <style>
+        .rectengle {
+            height: 300px;
+            width: 600px;
+            border: 2px solid black;
+            margin: 200px auto;
+            background-color: black;
+            position: relative;
+            z-index: -2;
+            font-size: 30px;
+        }
+        .circle-1,.circle-2 {
+            height: 300px;
+            width: 300px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .circle-1 {
+            position: absolute;
+            top: 0;
+            left: -145px;
+        }
+
+        .circle-2 {
+            position: absolute;
+            top: 0;
+            right: -145px;
+        }
+    </style>
+</head>
+<body>
+    <div class="rectengle">Get Started
+        <div class="circle-1"></div>
+        <div class="circle-2"></div>
+
+    </div>
+</body>
+</html>

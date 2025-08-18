@@ -1,0 +1,9 @@
+1. Install socket.io
+
+2. SERVER - Go to the Documentation "socket.io" and server initialization
+    - copy the code "Create with http server.
+
+3. CLIENT - Go to the Documentation "socket.io" and client initialization
+    - copy the code "<script src="/socket.io/socket.io.js"></script>".
+
+4. To use io in script file we should use const socket = io();

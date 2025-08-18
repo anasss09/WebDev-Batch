@@ -1,0 +1,36 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backend Todo App</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>{{name}}</h1>
+
+        <form action="/todos" method="POST" class="form-todo">
+            <input type="text" name="task" placeholder="Enter task.." class="inp" />
+            <button class="btn" type="submit">Add Task</button>
+        </form>
+
+        <ul class="taskList">
+            {{#each tasks as |t|}}
+            <li class="taskContent">
+                <div class="taskItem">{{t}} </div>
+                <div class="btngrp">
+                    <a href="/inreaseTask?task={{t}}"><button class="upBtn Tbtn">⬆</button></a>
+                    <a href="/decreaseTask?task={{t}}"><button class="downBtn Tbtn">⬇</button></a>
+                    <a href="/deleteTask?task={{t}}"><button class="deleteBtn Tbtn">⤫</button></a>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+
+</html>

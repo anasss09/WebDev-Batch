@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.heading {
+    font-size: 40px;
+    text-align: center;
+}
+
+.inputDetails {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
+.newTask {
+    font-size: 30px;
+    width: 60%;
+}
+
+.btn {
+    width: 15%;
+    margin-left: 20px;
+    font-size: 30px;
+    background-color: purple;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.taskList {
+    /* border: 1px solid black; */
+    width: 76.5%;
+    margin: auto;
+    margin-top: 30px;
+    list-style: none;
+}
+
+.task {
+    margin-bottom: 20px;
+    font-size: 20px;    
+    border-bottom: 1px solid black;
+    border-color: #ccc;
+    padding-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task:last-child {
+    margin-bottom: 0;
+}
+
+.upBtn,
+.downBtn,
+.deleteBtn {
+    background-color: purple;
+    color: white;
+    margin: 0 5px;
+    padding: 3px;
+    height: 50px;
+    width: 50px;
+    border: 0;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+li:first-child .btngrp .upBtn {
+    display: none;
+}
+
+li:last-child .btngrp .downBtn {
+    display: none;
+}

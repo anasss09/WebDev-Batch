@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Socket ROoms</title>
+		<script src="/socket.io/socket.io.js"></script>
+
+        <style>
+            .chatbox {
+                min-height: 400px;
+                width: 60%;
+                margin: auto;
+                border: 1px solid black;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+        </style>
+	</head>
+
+	<body>
+		<button class="cppBtn">
+            CPP
+        </button>
+        <button class="javaBtn">
+            JAVA
+        </button>
+        <button class="pythonBtn">
+            Python
+        </button>
+
+        <div id="cpp" class="cpp chatbox hidden">
+            <h4>
+                CPP <br>
+                <input type="text" placeholder="Enter your message" class="inputMsg">
+                <button type="submit" class="sendMsgBtn" >&gt;</button>
+
+                <div class="cppChat"></div>
+
+            </h4>
+        </div>
+        <div id="java" class="java chatbox hidden">
+            <h4>
+                JAVA <br>
+                <input type="text" placeholder="Enter your message" >
+                <button type="submit" >&gt;</button>
+
+            </h4>
+        </div>
+        <div id="python" class="python chatbox hidden">
+            <h4>
+                PYTHON <br>
+                <input type="text" placeholder="Enter your message">
+                <button type="submit">&gt;</button>
+            </h4>
+        </div>
+
+		<script src="script.js"></script>
+	</body>
+</html>

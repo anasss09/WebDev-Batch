@@ -1,0 +1,86 @@
+
+/* Nav Image start */
+.navbar {
+    height: 80px;
+    width: 100%;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+    background-color: #FFC017;
+}
+
+.nav-logo {
+    width: 200px; 
+    height: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+
+.nav-img {
+    /* border: 1px solid black; */
+    height: 50%;
+    width: 80%;
+
+    background-image: url("/img/Medium.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Navbar Image end */
+
+
+/* Anchor Links starts */
+
+.nav-links {
+    /* border: 1px solid purple; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 500px;
+}
+
+.nav-item {
+    /* border: 1px solid black; */
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.nav-item:link {
+    color: black;
+}
+
+.nav-item:visited {
+    color: black;
+}
+
+.nav-item:hover {
+    cursor: pointer;
+}
+
+/* Button start */
+
+.get-started {
+    height: 30px;
+    width: 95px;
+    font-size: 12px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+
+
+/* Button End */
+
+/* Anchor Links Ends */

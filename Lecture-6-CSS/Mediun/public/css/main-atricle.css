@@ -1,0 +1,131 @@
+.main-article {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+
+.article-container {
+    width: 60%;
+    border: 1px solid black;
+    height: 2500px;
+}
+
+.article-topics-container {
+    width: 35%;
+    height: 500px;
+    /* border: 1px solid black; */
+    position: sticky;
+    top: 100px;
+}
+
+
+
+
+
+
+/* Article Topic CSS Starts */
+
+.heading-div {
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.topic-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.list {
+    /* width: 30%; */
+    font-size: 13x;
+    padding: 12px;
+    border-radius: 50px;
+    background-color: #cccccc44;
+    /* border: 1px solid red; */
+}
+
+.article-text {
+    font-size: 14px;
+    color: rgb(3, 71, 3);
+    margin-top: 40px;
+}
+
+
+/* Article Topic CSS ENd */
+
+/* Terms and Servives Starts */
+
+.terms-services {
+    margin-top: 70px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px 31px;
+    /* border: 1px solid black; */
+
+
+}
+
+/* Terms and Servives Ends */
+
+
+/* Renders Article Parts Starts */
+
+.article-container-1 {
+
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 5px;
+    border: 1px solid red;
+    margin: 10px 0 0 10px;
+}
+
+.article-poly-img {
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
+
+    background-image: url("/img/Poly-img-square.jpeg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 50%;
+}
+
+.article-poly-name {
+
+    /* For canter the Poly text */
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+
+    height: 30px;
+    font-size: 12px;
+    font-weight: 550;
+    border: 1px solid purple;
+}
+
+.article-container-1-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.article-container-1-img {
+    border: 1px solid blue;
+    height: 150px;
+    width: 220px;
+
+    background-image: url("/img/article-details-1.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Renders Article Parts Ends */
+

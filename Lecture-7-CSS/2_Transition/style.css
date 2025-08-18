@@ -1,0 +1,14 @@
+.parent {
+    height: 350px;
+    width: 250px;
+    background-color: orange;
+    border: 1px solid #000000;
+    margin: 100px auto;
+    transition: 3s;
+
+}
+
+.parent:hover {
+    transform: rotateZ(180deg);
+    
+}

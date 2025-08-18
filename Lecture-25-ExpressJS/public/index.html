@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express App</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <h1>Todo App</h1>
+
+    <form action="/gettask" method="GET">
+        <input type="text" placeholder="Enter Task" name="task">
+        <button type="submit" >Add task</button>
+    </form>
+
+    <ul class="taskList">
+
+    </ul>
+
+
+    <script src="/script.js"></script>
+
+</body>
+</html>

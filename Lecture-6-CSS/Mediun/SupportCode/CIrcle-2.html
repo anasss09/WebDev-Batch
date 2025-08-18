@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Using sudo Code</title>
+
+    <style>
+        .container {
+            height: 300px;
+            width: 600px;
+            margin: 200px auto;
+            background-color: black;
+            position: relative;
+        }
+
+        .container::before {
+            content: "";
+            height: 300px;
+            width: 300px;
+            background-color: black;
+            display: block;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: -150px;
+        }
+
+        .container::after {
+            content: "";
+            height: 300px;
+            width: 300px;
+            background-color: black;
+            display: block;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            right: -150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+</body>
+</html>

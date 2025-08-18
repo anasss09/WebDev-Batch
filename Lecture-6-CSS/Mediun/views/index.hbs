@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medium Clone Front-End</title>
+    <!-- Including Navbar CSS -->
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <!-- Including Carousel CSS -->
+     <link rel="stylesheet" href="css/carousel.css">
+
+    <!-- Including Trending Article CSS -->
+     <link rel="stylesheet" href="css/trending-articles.css">
+
+    <!-- Including Main Article CSS -->
+    <link rel="stylesheet" href="css/main-atricle.css">
+
+    {{!-- Including axios --}}
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            /* height: 500px; */
+            width: 1200px;
+            /* border: 1px solid red; */
+            margin: auto;
+            margin-top: 90px;
+            font-family: sans-serif;
+        }
+
+        .yellow-container {
+            height: 550px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-bottom: 1px solid black;
+            background-color: #FFC017;
+            z-index: -1;
+        }
+
+        .sepretion-line {
+            width: 100vw;
+            border: 1px solid #ccc;
+            margin-bottom: 50px;
+            position: relative;
+            right: 170px;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+
+    <!-- Yellow Container for background Starts----->
+
+    <div class="yellow-container"></div>
+    <!-- Yellow Container for background Ends----->
+
+
+    <!-- NAVBAR STARTS -->
+    
+    <nav class="navbar">
+            <div class="nav-logo">
+                <div class="nav-img"></div>
+            </div>
+
+
+        <div class="nav-links">
+            <a class="nav-item" href="#">Our Story</a>
+            <a class="nav-item" href="#">Membership</a>
+            <a class="nav-item" href="#">Writing</a>
+            <a class="nav-item" href="#">Sign in</a>
+            <button class="get-started">
+                Get started
+            </button>
+        </div>
+    </nav>
+
+    <!-- NAVBAR ENDS -->
+
+
+    <!-- Container Starts -->
+
+    <div class="container">
+
+        <!-- Carousel Start ----------->
+        <div class="carousel">
+            <h1 class="carousel-heading">Stay curious.</h1>
+            <div class="carousel-text">Discover stories, thinking, and expertise from writers on my topic.</div>
+            <button class="carousel-button">Start Reading</button>
+        </div>
+
+        <!-- Carousel End --->
+
+        <!-- Trending Articles Start -->
+
+        <div class="trending-articles">
+            <div class="trending-heading">
+                <img src="/img/Trending-logo.png" alt="">
+                <div class="trending-heading-text">Trending Article</div>
+            </div>
+            <div class="article-list">
+
+                <!-- card 1 start -->
+                <div class="article article-1">
+                    <div class="article-no">01</div>
+                    <div class="article-details">
+
+                        <div class="article-details-1">
+                            <img src="/img/Trending-logo.png" alt="">
+                            <div class="trending-author-details"><span class="author" >
+                                {{fullName}}
+                                <div class="about-author">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, tempore?
+                                </div>
+                            
+                            </span> in <span>towards Data Science</span></div>
+                        </div>
+                        <div class="article-details-2">I Quit Murdring People for 7 days, Here's What Happened?
+
+                        </div>
+                        <div class="article-details-3">
+                            <span class="article-date">Jan 16&nbsp;&nbsp;&sdot;&nbsp;</span>
+                            <span class="article-read-time">3 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card 1 End -->
+
+
+                <div class="article article-2">
+                    <div class="article-no">02</div>
+                    <div class="article-details">
+
+                        <div class="article-details-1">
+                            <img src="/img/Trending-logo.png" alt="">
+                            <div class="trending-author-details"><span>Thi-Lam-Thuy LE</span> in <span>towards Data Science</span></div>
+                        </div>
+                        <div class="article-details-2">I Quit Murdring People for 7 days, Here's What Happened?
+
+                        </div>
+                        <div class="article-details-3">
+                            <span class="article-date">Jan 16&nbsp;&nbsp;&sdot;&nbsp;</span>
+                            <span class="article-read-time">3 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="article article-3">
+                    <div class="article-no">03</div>
+                    <div class="article-details">
+
+                        <div class="article-details-1">
+                            <img src="/img/Trending-logo.png" alt="">
+                            <div class="trending-author-details"><span>Thi-Lam-Thuy LE</span> in <span>towards Data Science</span></div>
+                        </div>
+                        <div class="article-details-2">I Quit Murdring People for 7 days, Here's What Happened?
+
+                        </div>
+                        <div class="article-details-3">
+                            <span class="article-date">Jan 16&nbsp;&nbsp;&sdot;&nbsp;</span>
+                            <span class="article-read-time">3 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="article article-4">
+                    <div class="article-no">04</div>
+                    <div class="article-details">
+
+                        <div class="article-details-1">
+                            <img src="/img/Trending-logo.png" alt="">
+                            <div class="trending-author-details"><span>Thi-Lam-Thuy LE</span> in <span>towards Data Science</span></div>
+                        </div>
+                        <div class="article-details-2">I Quit Murdring People for 7 days, Here's What Happened?
+
+                        </div>
+                        <div class="article-details-3">
+                            <span class="article-date">Jan 16&nbsp;&nbsp;&sdot;&nbsp;</span>
+                            <span class="article-read-time">3 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="article article-5">
+                    <div class="article-no">05</div>
+                    <div class="article-details">
+
+                        <div class="article-details-1">
+                            <img src="/img/Trending-logo.png" alt="">
+                            <div class="trending-author-details"><span>Thi-Lam-Thuy LE</span> in <span>towards Data Science</span></div>
+                        </div>
+                        <div class="article-details-2">I Quit Murdring People for 7 days, Here's What Happened?
+
+                        </div>
+                        <div class="article-details-3">
+                            <span class="article-date">Jan 16&nbsp;&nbsp;&sdot;&nbsp;</span>
+                            <span class="article-read-time">3 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="article article-6">
+                    <div class="article-no">06</div>
+                    <div class="article-details">
+
+                        <div class="article-details-1">
+                            <img src="/img/Trending-logo.png" alt="">
+                            <div class="trending-author-details"><span>Thi-Lam-Thuy LE</span> in <span>towards Data Science</span></div>
+                        </div>
+                        <div class="article-details-2">I Quit Murdring People for 7 days, Here's What Happened?
+
+                        </div>
+                        <div class="article-details-3">
+                            <span class="article-date">Jan 16&nbsp;&nbsp;&sdot;&nbsp;</span>
+                            <span class="article-read-time">3 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br><br><br><br>
+
+        <!-- Trending Articles Start -->
+
+
+        <div class="sepretion-line"></div>
+
+
+        <!-- Main Article container starts -->
+
+        <div class="main-article">
+            <!-- Outer Container -->
+            <div class="article-container">
+                <!-- Box 1 Container -->
+                <div class="article-container-1">
+                    <!-- Details wala container -->
+                    <div class="article-container-1-details">
+
+                        <div class="article-poly-img"></div>
+                        <div class="article-poly-name">Poly Mackintosh</div> 
+                    </div>
+
+                    <!-- Image detail wala container -->
+                    <div class="article-container-1-img"></div>
+                </div>
+
+                <div class="article-container-2">'Medicine': Is sober Dancing the new ecstasy</div>
+                <div class="article-container-3"></div>
+            </div>
+
+            <!-- Part of stiky position start -->
+            <div class="article-topics-container">
+                <div class="heading-div">Discover more of what matters to you</div>
+                <div class="topic-list">
+                    <div class="list">Programming</div>
+                    <div class="list">Data Science</div>
+                    <div class="list">Technology</div>
+                    <div class="list">Self Improvement</div>
+                    <div class="list">Writting</div>
+                    <div class="list">Relationships</div>
+                    <div class="list">Machine Learning</div>
+                    <div class="list">Productivity</div>
+                    <div class="list">Politics</div>
+                </div>
+                <div class="article-text">See more topics</div>
+
+                <div class="terms-services">
+                    <div class="terms-list">Help</div>
+                    <div class="terms-list">Status</div>
+                    <div class="terms-list">About</div>
+                    <div class="terms-list">Carriers</div>
+                    <div class="terms-list">Blog</div>
+                    <div class="terms-list">Privacy</div>
+                    <div class="terms-list">Terms</div>
+                    <div class="terms-list">Text to Speech</div>
+                    <div class="terms-list">Terms</div>
+                </div>
+            </div>
+        </div>
+        <!-- Part of stiky position  Ends-->
+
+        <!-- Main Article container End -->
+
+
+
+    </div>
+    <!-- Container Ends -->
+    
+    <script src="/script.js"></script>
+</body>
+</html>

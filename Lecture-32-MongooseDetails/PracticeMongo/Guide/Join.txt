@@ -1,0 +1,77 @@
+1. JOIN in mongoose:
+    - Make Schema of Students
+    - Make Schema of Address
+
+2. Add Address in address collection
+    - take ObjectId from address collection and add address_id: put value of ObjectId
+    - Example
+    [
+        {
+            _id: ObjectId('6883bd16624b6fb54dd08c3b'),
+            name: 'Anas',
+            age: 22,
+            marks: 99,
+            address_id: '6883c19250b0febeb9eec4a9'
+        },
+        {
+            _id: ObjectId('6883bcfa624b6fb54dd08c39'),
+            name: 'Sakshi',
+            age: 21,
+            marks: 95,
+            address_id: '6883c19250b0febeb9eec4aa'
+        },
+        {
+            _id: ObjectId('6883bd32624b6fb54dd08c3d'),
+            name: 'Bakar',
+            age: 20,
+            marks: 80,
+            address_id: '6883c19250b0febeb9eec4ab'
+        },
+        {
+            _id: ObjectId('6883bd48624b6fb54dd08c3f'),
+            name: 'Palak',
+            age: 20,
+            marks: 90,
+            address_id: '6883c19250b0febeb9eec4ac'
+        }
+    ]
+
+    - From address collection
+        [
+            {
+                _id: ObjectId('6883c19250b0febeb9eec4a9'),
+                address: 'Kohat Enclave, Delhi'
+            },
+            {
+                _id: ObjectId('6883c19250b0febeb9eec4aa'),
+                address: 'Rohini, Delhi'
+            },
+            {
+                _id: ObjectId('6883c19250b0febeb9eec4ab'),
+                address: 'Panipat, Haryana'
+            },
+            {
+                _id: ObjectId('6883c19250b0febeb9eec4ac'),
+                address: 'Ludhina, Punjab'
+            }
+        ]
+
+3. Make address in Students Students
+    address_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Address'
+    }
+
+4. perform populate(): 
+
+    app.get('/join',async (req,res) => {
+    try{
+        let Sdata = await Student.find().populate('address_id')
+        res.send({
+            msg:"Joined Successfully",
+            Student: Sdata
+        })
+    } catch(err) {
+        console.log(err);        
+    }
+})

@@ -1,0 +1,120 @@
+.trending-articles{
+    margin-top: 100px;
+}
+
+.article-list {
+    width: 100%;
+    /* border: 2px solid blue; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px 0;
+
+}
+
+.article {
+    /* border: 3px solid lime; */
+    height: 100px;
+    width: 30%;
+}
+
+.trending-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+
+.trending-heading img{
+    height: 30px;
+}
+
+.trending-heading-text {
+    font-size: 16px;
+}
+
+/* Boxing  Starts*/
+.article {
+    display: flex;
+    gap: 10px;
+}
+
+.article-details {
+    flex-grow: 1;
+}
+
+.article-no {
+    font-size: 30px;
+    color: #cccccc6b;
+}
+
+.article-details-1 {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 5px;
+}
+
+.trending-author-details {
+    font-size: 12px;
+    font-weight: 200;
+}
+
+.trending-author-details span {
+    font-weight: 550;
+}
+
+.article-details-1 img{
+    height: 20px;
+    
+}
+
+.article-details-2 {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.article-details-3 {
+    /* border: 1px solid red; */
+    font-weight: 400;
+    font-size: 11px;
+    color: #9a9898;
+    margin-top: 10px;
+}
+
+.article-read-time::after {
+    content: "\2B50";
+}
+
+
+/* Boxing ends */
+
+
+/* Dialogue Starts */
+
+.about-author {
+    border: 1px solid black;
+    position: absolute;
+    height: 100px;
+    width: 250px;
+    top: -80px;
+    right: -255px;
+    z-index: 1;
+    display: none;
+    background-color: white;
+}
+
+.author {
+    position: relative;
+}
+
+.author:hover {
+    cursor: pointer;
+}
+
+.author:hover .about-author{
+    display: block;
+}
+
+/* Dialogue Ends */

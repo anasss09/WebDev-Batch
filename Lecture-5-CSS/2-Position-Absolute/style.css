@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.parent {
+    border: 1px solid black;
+    height: 500px;
+    width: 800px;
+    margin: 20px;
+
+    position: relative;
+
+}
+
+.child {
+    border: 5px solid red;
+    width: 400px;
+    margin: auto;
+
+    position: absolute;
+    top: 50%;
+    right: 10px;
+}

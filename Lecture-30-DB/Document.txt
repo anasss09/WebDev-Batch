@@ -1,0 +1,86 @@
+Documents for the Views, aggregate functions and $lookup
+
+- mongodb.com
+    - Introduction
+        - Databases & Collection
+            -Views
+                -Join Collection
+
+Note - Like we have 2 collections 1 is Student and 2nd is address, we have to join address in our student details/collections.
+    - In address we should add address row and put address on it, it will autometically add "_id" 
+    - then we make column in Student collection "a_id" we will paste "_id" on it then perform operation.
+
+1. How to Join two Collection
+    - First we should make Primary key ("_id" and "a_id)
+    - then through below docs we can add 2 collections
+
+2. Data look Like
+    -Student
+        - {
+            _id: ObjectId('688213df9af7a7ce46429d6b'),
+            name: 'Anas',
+            age: 28,
+            subject: 'C++',
+            marks: 90,
+            a_id: ObjectId('688212c29af7a7ce46429d68')
+        }
+    - address
+        - {
+            _id: ObjectId('688212c29af7a7ce46429d68'),
+            address: 'Kohat Enclave, Delhi'
+          }
+
+3. Command for Join
+
+    db.Student.aggregate([
+        {
+        $lookup:
+            {
+            from: "address",
+            localField: "a_id" ,
+            foreignField: "_id",
+            as: "AddressFK"
+            }
+        }
+    ])
+
+
+To see all Collection from DB:
+    - show collections
+
+
+Group Data
+    - We have to make new collection "products".
+    - ProductsArray = [
+    {
+        name: "Dal",
+        category: "veg",
+        price: 100
+    },
+    {
+        name: "Rice",
+        category: "veg",
+        price: 100
+    },
+    {
+        name: "Chicken",
+        category: "non-veg",
+        price: 100
+    },
+    {
+        name: "Biryani",
+        category: "non-veg",
+        price: 120
+    }
+]
+
+QUERY:
+db.products.aggregate( [
+   {
+      $group:
+         {
+            _id: "$category",
+            totalPrice: { $sum: "$price" }
+         }
+   }
+] )
