@@ -1,0 +1,18 @@
+npx is npm ka advance version.
+
+1. App.js -> This is components. Whatever we create inside this (That like functions).
+2. index.js -> Road HTML content to the page.
+3. We can return only single element. 
+    - function App() {
+            return (
+                <div>
+                    <h1>Hello World</h1>
+                    <div>Learning React</div>
+                </div>
+            );
+        }
+    - Thats how we return multiple element
+
+4. When load components -> Write in components file "rafce" due to ES7 extention of vs code
+5. during load components type components name when it suggest enter tab it will import file
+6. We dont write class in components return we write className
