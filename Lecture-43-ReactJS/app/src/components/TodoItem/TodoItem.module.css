@@ -1,0 +1,9 @@
+.TodoItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    height: 30px;
+    width: 30px;
+}

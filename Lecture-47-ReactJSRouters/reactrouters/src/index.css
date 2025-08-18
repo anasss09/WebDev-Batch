@@ -1,0 +1,62 @@
+.navItems {
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  background-color: purple;
+}
+
+.navLinks:link {
+  color: white;
+  text-decoration: none;
+}
+
+.navLinks:visited {
+  color: white;
+}
+
+.navLinks:hover {
+  color: white;
+}
+
+.active {
+  color: aqua !important;
+}
+
+.courses-item {
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+  width: 50%;
+  height: 40px;
+  align-items: center;
+  background-color: purple;
+  margin: auto;
+}
+
+.courses-link:link {
+  color: white;
+  text-decoration: none;
+}
+
+.courses-link:visited {
+  color: white;
+}
+
+.courses-link:hover {
+  color: white;
+}
+
+.course-show {
+  border: 1px solid black;
+  width: 80%;
+  margin: auto;
+  padding: 10px;
+}
+
+.course-feature-link {
+  list-style: none;
+  padding: 10px;
+}

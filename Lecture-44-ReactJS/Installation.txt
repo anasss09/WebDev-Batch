@@ -1,0 +1,83 @@
+1. npm init -y
+
+Install react and react-dom
+> npm i react react-dom
+
+2. Install as DEV dependencies
+    - babel-core
+    - babel-loader
+    - @babel-preset-react
+    - webpack
+    - webpack-cli
+> npm i -D babel-loader @babel-preset-react webpack-cli
+> npm i -g webpack // For install globally
+
+3. Create static folder and src folder
+4. Create index.html in static folder and add <div id="root"></div>
+    - Include <script src="bundle.js"></script>
+    - `bundle.js` will include all the JS code from the src folder inside of it
+
+5. Create a new file called `webpack.config.js` and add the following configuration:
+
+6. Write webpack document code
+    - webpack.js.org -> documentation -> webpack.config.js
+    `const path = require('path');
+
+        module.exports = {
+        entry: './src/App.js', // from where you have to take code
+        output: {
+            path: path.resolve(__dirname, 'static'),
+            filename: 'bundle.js', // here our code is
+        },
+    };`
+
+10. Include css-loader or style-loader
+    - Install css-loader -> "npm install --save-dev css-loader"
+    - Install style-loader -> "npm install --save-dev style-loader"
+    
+11. Add css-loader object
+    - {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      }
+
+7. Add code babel-loder in "webpack.config.js" file.
+    - webpack.js.org -> loader -> babel-loader 
+    `const path = require("path");
+
+        module.exports = {
+        entry: "./src/App.js",
+        output: {
+            path: path.resolve(__dirname, "static"),
+            filename: "bundle.js",
+        },
+        module: {
+            rules: [
+            {
+                test: /\.(?:js|mjs|cjs)$/,
+                exclude: /node_modules/,
+                use: {
+                loader: "babel-loader",
+                options: {
+                    targets: "defaults",
+                    presets: [["@babel/preset-react"]],
+                },
+                },
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
+            ],
+        },
+    };`
+
+
+8. Run the code.
+    - webpack --mode development  // For development mode
+    - webpack --mode production
+
+9. Flow
+    - webpack file convert krke bundle.js me daal rha h.
+    - bundle.js humari HTML file me include h.
+
