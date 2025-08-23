@@ -1,0 +1,88 @@
+Connect JWT Token:
+
+Step 1: 
+    - Go to the documents jwt.io or npmjs.com -> jsonwebtoken
+    - Create token in login 
+        - `
+            const token = jwt.sign({
+                 _id: user._id
+            }, process.env.TOKEN_SECRET);
+        `
+
+Step 2:
+    - Save cookie in MongoDB:
+        - `
+            user.token = token
+            await user.save()
+        `
+
+Step 3:
+    - Set cookie in JWT:
+        - `
+            res.status(200)
+                .cookie('jwt', token, {
+                    httpOnly: true,
+                    secure: true,
+                    maxAge: 60 * 60 * 24
+                })
+                .json({
+                    message: "Success",
+                    token: token
+                })
+            `
+
+Step 4:
+    - Create `generaeToken()` in model/user.js 
+        - `
+            userSchema.methods.generateToken = async function () {
+                const user = this;
+                const token = jwt.sign(
+                    {
+                        _id: user._id,
+                    },
+                    process.env.TOKEN_SECRET
+                );
+
+                user.token = token;
+                await user.save();
+                return token
+            };
+        `
+
+Step 5:
+    - Call in `postLogin()` 
+        - ` const token = await user.generateToken();`
+    
+Step 6: 
+    - Make `getHome Route` :
+            - Take out from cookies 
+                - `const token = req.cookies.jwt`
+
+Get Route: 
+    - `export const getHome = async (req, res) => {
+            const token = req.cookies.jwt;
+
+            if (!token) {
+                res.status(401).json("Unaithorisez")
+            }
+
+            const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+
+            const user = await User.findOne({
+                _id: decode._id,
+            });
+
+            if (!user) {
+                throw new Error("User Not Found!!");
+            }
+
+            const newToken = await user.generateToken();
+
+            return res.status(200).json({
+                message: "New Token Generated ",
+                user,
+                newToken,
+            });
+        };
+    `
+
