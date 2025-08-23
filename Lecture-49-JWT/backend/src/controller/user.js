@@ -1,100 +1,87 @@
-import jwt, { decode } from "jsonwebtoken";
-import User from "../models/user.js";
+import User from "../model/user.js";
+import jwt from 'jsonwebtoken'
 
 export const postSignup = async (req, res, next) => {
-	const { username, password, email } = req.body;
-	if (!username || !password || !email) {
-		if (!username) {
-			throw new Error("Missing Username");
-		}
-
-		if (!password) {
-			throw new Error("Missing password");
-		}
-
-		if (!email) {
-			throw new Error("Missing email");
-		}
-	}
+	const { username, email, password } = req.body;
 	try {
-		let newUser = await User.create({
+		const user = await User.create({
 			username,
-			password,
 			email,
+			password,
 		});
 
 		res.status(200).json({
-			message: "SuccessFull",
-			newUser,
+			message: "Sign Up Successfull",
+			user: user,
 		});
 	} catch (error) {
-		// next(error)
-		throw new Error("Error While Signup ", error);
+		next(error);
 	}
-};
+}
 
 export const postLogin = async (req, res, next) => {
-	const { username, password, email } = req.body;
+	const { password } = req.body;
 	try {
 		const user = await User.findOne({
-			$or: [{ username: username }, { email: email }],
+			$or: [{ username: req.body.username }, { email: req.body.email }],
 		});
 
 		if (!user) {
-			throw new Error("User not found !! Wrong username or emailID");
+			throw new Error("Un Authorised !!");
 		}
 
-		// const isPasswordCorrect = await user.checkPassword(password)
-		// console.log(isPasswordCorrect);
-
-		// if(!isPasswordCorrect) {
-		//     throw new Error("Wrong Password")
-		// }
+		//Password Check
+		const checkPsd = await user.checkPassword(password)
+        if(!checkPsd) {
+            throw new Error("Wrong Password")
+        }
 
 		const token = await user.generateToken();
-
 		res.status(200)
-			.cookie("jwt", token, {
-				httpOnly: true,
-				secure: true,
-				// maxAge: 60 * 60 * 24
-			})
-			.json({
-				message: "Success",
-				token: token,
-			});
+        .cookie('jwt', token, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 60 * 60 * 24 * 7
+        })
+        .json({
+            message: "Logged In",
+			token: token,
+		});
 	} catch (error) {
 		next(error);
-		// throw new Error("Error while Login!")
 	}
-};
+}
 
-export const getHome = async (req, res) => {
-	const token = req.cookies.jwt;
+export const getHome = async (req, res, next) => {
+    const token = req.cookies.jwt
+    
+    if(!token) {
+        throw new Error("Un Authorized")
+    }
 
-	if (!token) {
-		res.status(401).json("Unaithorisez")
-	}
+    const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+    const user = await User.findOne({
+        _id: decoded._id
+    })
 
-	const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+    if(!user) {
+        throw new Error("User Not Found")
+    }
 
-	const user = await User.findOne({
-		_id: decode._id,
-	});
+    const tokenID = await user.generateToken()
 
-	if (!user) {
-		throw new Error("User Not Found!!");
-	}
+    res.status(200).json({
+        message: "Got Home Page",
+        user: user,
+        token: tokenID
+    })
+}
 
-	const newToken = await user.generateToken();
-
-	return res.status(200).json({
-		message: "New Token Generated ",
-		user,
-		newToken,
-	});
-};
-
-export const getLogout = (req, res) => {
-		res.status(200).cookie("jwt", "").json("Logout SuccessFull");
-};
+export const getLogout = (req, res, next) => {
+    
+    res.status(200).cookie('jwt', "", {
+        maxAge: 0
+    }).json({
+        message: "Log Out Successfull"
+    })
+}

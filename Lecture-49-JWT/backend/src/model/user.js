@@ -1,9 +1,15 @@
-import mongoose, { Schema } from "mongoose";
-import bcrypt from "bcrypt";
-import jwt from 'jsonwebtoken'
+import mongoose, { model, Schema } from "mongoose";
+import bcrypt, { hash } from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const userSchema = new Schema({
 	username: {
+		type: String,
+		required: true,
+		trim: true,
+		unique: true,
+	},
+	email: {
 		type: String,
 		required: true,
 		trim: true,
@@ -14,36 +20,31 @@ const userSchema = new Schema({
 		required: true,
 		trim: true,
 	},
-	email: {
-		type: String,
-		require: true,
-		trim: true,
-		unique: true,
-	},
 	token: {
 		type: String,
-		default: undefined,
+		default: "",
 	},
 });
 
 userSchema.pre("save", async function (next) {
 	try {
 		const user = this;
+		if (!user.isModified("password")) return next();
 		const hash = await bcrypt.hash(user.password, 10);
 		user.password = hash;
 		next();
 	} catch (error) {
-		throw new Error("Error in Bcrypt package", error);
+		next(error);
 	}
 });
 
 userSchema.methods.checkPassword = async function (password) {
 	try {
 		const user = this;
-		const isPasswordCorrect = await bcrypt.compare(password, user.password);
-		return isPasswordCorrect;
+		const decodedPassword = await bcrypt.compare(password, user.password);
+		return decodedPassword;
 	} catch (error) {
-		throw new Error("Error on Check Password in user Model");
+		throw new Error("Wrong Password", error);
 	}
 };
 
@@ -58,7 +59,8 @@ userSchema.methods.generateToken = async function () {
 
 	user.token = token;
 	await user.save();
-	return token
+
+	return token;
 };
 
 const User = mongoose.model("User", userSchema);
