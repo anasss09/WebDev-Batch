@@ -5,9 +5,9 @@ import uploadOnCloudinary from "../utils/uploadCloudinary.js";
 import jwt from 'jsonwebtoken'
 
 export const postSignup = ErrorWrapper(async (req, res, next) => {
-	const { username, password, email, name } = req.body;
+	const { username, email, password, name } = req.body;
 	const incomingField = Object.keys(req.body);
-	const requiredField = ["username", "password", "email", "name"];
+	const requiredField = ["username", "email", "password", "name"];
 	const missingField = requiredField.filter(
 		(field) => !incomingField.includes(field)
 	);
@@ -78,16 +78,16 @@ const generteAccessTokenAndgenerteRefreshToken = async (userId) => {
 
 export const postLogin = ErrorWrapper(async (req, res, next) => {
 	const { username, password, email } = req.body;
+
 	if (!username && !email) {
 		throw new ErrorHandler(401, `Enter username or password !!`);
 	}
-
 	if (!password) {
 		throw new ErrorHandler(401, "Enter password ");
 	}
 
 	let user = await User.findOne({
-		$or: [{ username }, { email }],
+		$or: [{ username }, { email }]
 	});
 
 	if (!user) {

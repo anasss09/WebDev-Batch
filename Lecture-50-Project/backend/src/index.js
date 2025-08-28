@@ -3,7 +3,9 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import bodyParser from "body-parser";
-import userRouter from './routes/user.js'
+import userRouter from './routes/auth.js'
+import restaurantRouter from "./routes/restaurant.js";
+import { verifyjwt } from "./middlewares/verifyJWT.js";
 const app = express();
 const PORT = process.env.PORT;
 
@@ -18,6 +20,7 @@ app.use(express.static('public')); // To store the information that front end mi
 app.use(cookieParser());
 
 app.use('/', userRouter)
+app.use('/restaurant', verifyjwt , restaurantRouter)
 
 mongoose.connect(`${process.env.DB_PATH}/${process.env.DB_NAME}`)
     .then(() => {
