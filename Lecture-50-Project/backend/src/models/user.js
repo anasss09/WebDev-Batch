@@ -50,6 +50,12 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    cart: [
+        {
+            food: Object,
+            quantity: Number
+        }
+    ],
     refreshToken: {
         type: String
     }
@@ -69,7 +75,6 @@ userSchema.pre('save', function (next) {
             return next(err);
         }
         user.password = hash;
-        console.log(user)
         next();
     });
 });

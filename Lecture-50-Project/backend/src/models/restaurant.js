@@ -34,7 +34,7 @@ const restaurantSchema = new Schema(
 		},
 		images: [{ url: "String" }],
 
-		owner: {
+		ownerId: {
 			type: Schema.Types.ObjectId,
 			ref: "User",
 			required: true
@@ -70,7 +70,7 @@ const restaurantSchema = new Schema(
 		],
 		reviews: [
 			{
-				user: {
+				userId: {
 					type: mongoose.SchemaTypes.ObjectId,
 					ref: "User",
 				},
@@ -80,13 +80,13 @@ const restaurantSchema = new Schema(
 				},
 				images: [
 					{
-						imageUrl: String,
+						url: String,
 					},
 				],
 				message: {
 					type: String,
 				},
-				name: String,
+				username: String,
 			},
 		],
 	},
