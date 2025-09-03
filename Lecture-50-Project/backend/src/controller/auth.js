@@ -120,3 +120,23 @@ export const postLogin = ErrorWrapper(async (req, res, next) => {
 			user
 		});
 });
+
+export const getLogout = ErrorWrapper(async (req, res, next) => {
+	try {
+		res.cookie('AccessToken', process.env.ACCESS_TOKEN_KEY, {
+			httpOnly: true,
+			maxAge: 0
+		})
+		
+		res.cookie('RefreshToken', process.env.ACCESS_TOKEN_KEY, {
+			httpOnly: true,
+			maxAge: 0
+		})
+		
+		res.status(200).json({
+			message: 'Logout SuccessFull'
+		})
+	} catch (error) {
+		throw new ErrorHandler(error.statusCode || 500, error.message)
+	}
+})

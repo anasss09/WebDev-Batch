@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(cors({
-    origin: process.env.CORS_ORIGINS,
+    origin: "http://localhost:3000",
     credentials: true
 }))
 app.use(bodyParser.json({ limit: "4kb" }));
@@ -18,6 +18,17 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "4kb" }));
 app.use(express.static('public')); // To store the information that front end might provide
 
 app.use(cookieParser());
+
+const getUser = (req, res, next) => {
+    const user = req.user;
+    if (!user) {
+        return res.status(401).json({ user: undefined });
+    }
+    return res.status(200).json({ user });
+}
+
+
+app.get('/getuser', verifyjwt, getUser);
 
 app.use('/', userRouter)
 app.use('/restaurant', verifyjwt , restaurantRouter)

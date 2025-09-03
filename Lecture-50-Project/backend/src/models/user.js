@@ -38,12 +38,15 @@ const userSchema = new Schema({
                     name: String,
                     price: Number,
                     quantity: Number,
-                    id: {
-                        type: Schema.Types.ObjectId,
-                        ref: "Food"
-                    }
+                    // id: {
+                    //     type: Schema.Types.ObjectId,
+                    //     ref: "Food"
+                    // }
                 }
-            ]
+            ],
+            totalPrice: {
+                type: Number
+            }
         }
     ],
     password: {
@@ -53,7 +56,9 @@ const userSchema = new Schema({
     cart: [
         {
             food: Object,
-            quantity: Number
+            quantity: Number,
+            restaurantName: String,
+            category: String
         }
     ],
     refreshToken: {
