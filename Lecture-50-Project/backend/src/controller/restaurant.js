@@ -498,6 +498,51 @@ export const getAllCusines = ErrorWrapper(async (req, res, next) => {
 	}
 });
 
+export const getAllRestauratFoodItems = ErrorWrapper(async (req, res, next) => {
+	try {
+		const restaurant = await Restaurant.find();
+
+		// const foodItems = restaurant.map(restaurantItrate => {
+		// 	return {
+		// 		cusines: restaurantItrate.cusines.map(cusine => {
+		// 			return {
+		// 				food: cusine.food  // this contains all food items for this category
+		// 			};
+		// 		})
+		// 	};
+		// });
+
+		// Format restaurants with foods grouped by cuisine
+		const foodItems = restaurant.map(r => {
+			return {
+				restaurantName: r.name,
+				cuisines: r.cusines.map(c => {
+					return {
+						category: c.category,
+						foods: c.food.map(f => ({
+							_id: f._id,
+							name: f.name,
+							price: f.price,
+							description: f.description,
+							veg: f.veg,
+							images: f.images
+						}))
+					};
+				})
+			};
+		});
+
+
+		res.status(200).json({
+			success: true,
+			message:'Success Fully fetched',
+			foodItems: foodItems
+		})
+	} catch (error) {
+		throw new ErrorHandler(error.statusCode || 500, error.message)
+	}
+})
+
 export const postAddFoodImages = ErrorWrapper(async (req, res, next) => {
 	const { id } = req.params;
 	const { category, restaurant_name } = req.body;
@@ -568,6 +613,72 @@ export const postAddFoodImages = ErrorWrapper(async (req, res, next) => {
 		throw new ErrorHandler(error.statusCode || 500, error.message);
 	}
 });
+
+
+export const postAddRestaurantImages = ErrorWrapper(async (req, res, next) => {
+	// const { id } = req.params;
+	const { restaurant_name } = req.body;
+
+	try {
+		const restaurant = await Restaurant.findOne({
+			name: restaurant_name
+		})
+
+		if (!restaurant) {
+			throw new ErrorHandler(404, 'This restaurant not found Plaese give valid Restaurant name.')
+		}
+
+		if (req.user._id.toString() !== restaurant.ownerId.toString()) {
+			throw new ErrorHandler(401, "You are not authorized to add images")
+		}
+
+		const images = req.files;
+		if (images.length == 0) {
+			throw new ErrorHandler(400, "Please provide images to upload");
+		}
+
+		let imageUrl = []
+		const cloudinaryResult = await uploadBatchOnCloudinary(images)
+
+		for (let i = 0; i < cloudinaryResult.length; i++) {
+			imageUrl.push({
+				url: cloudinaryResult[i].url,
+			});
+		}
+
+		restaurant.images = [...imageUrl, ...restaurant.images]
+		await restaurant.save()
+
+		res.status(200).json({
+			success: true,
+			message: 'Images added SuccessFully',
+			images: restaurant.images
+		})
+
+	} catch (error) {
+		throw new ErrorHandler(error.statusCode || 500, error.message)
+	}
+})
+
+
+export const getAllRestauratImages = ErrorWrapper(async (req, res, next) => {
+	const { restaurant_name } = req.query
+
+	try {
+		const restaurant = await Restaurant.findOne({ name: restaurant_name })
+		if (!restaurant) {
+			throw new ErrorHandler(404, 'Restaurant not found Please provide valid restaurant name.')
+		}
+
+		res.status(200).json({
+			success: true,
+			message: 'Succssfull',
+			images: restaurant.images
+		})
+	} catch (error) {
+		throw new ErrorHandler(error.statusCode || 500, error.message)
+	}
+})
 
 // CRUD ON REVIEWS
 export const postAddReview = ErrorWrapper(async (req, res, next) => {
@@ -804,12 +915,12 @@ export const postCreateOrder = ErrorWrapper(async (req, res, next) => {
 				name: item.food.name,
 				totalPrice: item.food.price * item.quantity,
 				quantity: item.quantity,
+				image: item.food.images[0].url
 			})),
 			totalPrice: amount,
 		};
 
 		req.user.orderHistory.unshift(food);
-		await req.user.save();
 
 		const order = {
 			id: req.user.orderHistory[0]._id,
@@ -818,9 +929,9 @@ export const postCreateOrder = ErrorWrapper(async (req, res, next) => {
 			name: req.user.name,
 		};
 
-        
-        req.user.cart = []
-        await req.user.save()
+
+		req.user.cart = []
+		await req.user.save()
 
 		res.status(200).json({
 			success: true,
@@ -835,9 +946,9 @@ export const postCreateOrder = ErrorWrapper(async (req, res, next) => {
 
 export const postOrderVerifyPayment = ErrorWrapper(async (req, res, next) => {
 
-    if (process.env.RAZORPAY_SECRET === "1234567890dummysecretkey") {
-    return res.json({ success: true, message: "✅ Payment Verified Successfully" });
-  }
+	if (process.env.RAZORPAY_SECRET === "1234567890dummysecretkey") {
+		return res.json({ success: true, message: "✅ Payment Verified Successfully" });
+	}
 
 	const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
 
@@ -860,25 +971,15 @@ export const postOrderVerifyPayment = ErrorWrapper(async (req, res, next) => {
 });
 
 export const getOrderHistory = ErrorWrapper(async (req, res, next) => {
-    const order = req.user.orderHistory;
+	const order = req.user.orderHistory;
 
-    if(!order) {
-        throw new ErrorHandler(400, 'Order not found')
-    }
-
-    res.status(200).json({
-        success: true,
-        message: 'Seccessfull',
-        order: order
-    })
-})
-
-export const getAllFoods = ErrorWrapper(async (req, res, next) => {
-	try {
-		const restaurant = await Restaurant.find();
-
-		
-	} catch (error) {
-		
+	if (!order) {
+		throw new ErrorHandler(400, 'Order not found')
 	}
+
+	res.status(200).json({
+		success: true,
+		message: 'Seccessfull',
+		order: order
+	})
 })

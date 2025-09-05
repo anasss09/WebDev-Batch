@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "../utils/axios";
+import axios from "../../utils/axios";
 import { useParams } from "react-router-dom";
 import RestaurantPageItem from "./RestaurantPageItem";
-import MySpinner from "../components/Spinner";
+import MySpinner from "../../components/Spinner";
 
 const RestaurantPage = () => {
 	const { restaurant_id } = useParams();

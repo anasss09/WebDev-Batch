@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import axios from "../utils/axios";
+import axios from "../../utils/axios";
 import Styles from "./PaymentButton.module.css";
 
 function PaymentButton({ amount }) {
@@ -54,9 +54,14 @@ function PaymentButton({ amount }) {
 	};
 
 	return (
-		<Button onClick={handlePayment} className={Styles["payment-btn"]}>
-			Pay ₹{amount}
-		</Button>
+		<div className={Styles["payment-btn-container"]}>
+			<div className={Styles["payment-btn-wrapper"]}>
+				<span className={Styles["payment-btn-amount"]}>Amount: ₹{amount}</span>
+				<Button onClick={handlePayment} className={Styles["payment-btn"]}>
+					Pay ₹{amount}
+				</Button>
+			</div>
+		</div>
 	);
 }
 

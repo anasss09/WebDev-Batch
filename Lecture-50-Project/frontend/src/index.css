@@ -13,7 +13,7 @@ code {
 }
 
 .active {
-    color: white !important;
+    color: blue !important;
 }
 
 .profile-image {
@@ -45,44 +45,6 @@ code {
 
 .restaurantDetails-btn:visited{
   color: white;
-}
-
-
-.food-item-container{
-  width: 100%;
-  border: 1px solid red;
-  display: flex;
-}
-
-.food-item-image{
-  text-transform: capitalize;
-  width: 25%;
-}
-
-.food-item-image img{
-  width: 100%;
-}
-
-.food-item-details{
-  width: 70%;
-  padding: 10px;
-}
-
-.food-item-price::before{
-  content: "₹"
-}
-
-.food-item-name{
-  text-transform: capitalize;
-}
-
-.add-to-cart-btn{
-  background-color: blueviolet;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .cart-number{

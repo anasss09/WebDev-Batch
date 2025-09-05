@@ -38,10 +38,7 @@ const userSchema = new Schema({
                     name: String,
                     price: Number,
                     quantity: Number,
-                    // id: {
-                    //     type: Schema.Types.ObjectId,
-                    //     ref: "Food"
-                    // }
+                    image: String
                 }
             ],
             totalPrice: {

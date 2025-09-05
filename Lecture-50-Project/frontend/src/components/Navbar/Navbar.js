@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import axios from "../utils/axios";
+import axios from "../../utils/axios";
 import { createBrowserRouter, NavLink, useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Badge, Image, Button } from "react-bootstrap";
 import Styles from './Navbar.module.css'
 import { useDispatch, useSelector } from "react-redux";
-import ProfileImage from "./ProfileImage";
+import ProfileImage from "../ProfileImage";
 import { Dropdown } from "react-bootstrap";
-import cartImage from '../components/assets/images/cart.png';
-import orderHistory from '../components/assets/images/OrderHistory.png'
+import cartImage from '../../components/assets/images/cart.png';
+import orderHistory from '../../components/assets/images/OrderHistory.png'
 
 
 const NavbarApp = () => {
@@ -17,7 +17,7 @@ const NavbarApp = () => {
     useEffect(() => {
         const isLoggedIn = async () => {
             try {
-                const { data } = await axios.get('/getuser');
+                const { data } = await axios.get('/getuser');                
                 if (data.user) {
                     console.log("DATA ", data.user);
                     // SET THE DATA TO REDUX
@@ -35,20 +35,6 @@ const NavbarApp = () => {
     function handleLogout() {
         navigate('/logout')
     }
-
-
-    // return (
-    // 	<div className={Styles['navbar']} >
-    // 		{!userData.isLoggedIn && <NavLink to="/login" className={Styles['nav-Item']} >Login</NavLink>}
-    //         {!userData.isLoggedIn && <NavLink to='/signup' className={Styles['nav-Item']} >Sign Up</NavLink>}
-    //         {userData.isLoggedIn && <NavLink to='/app' className={Styles['nav-Item']} >Home</NavLink>}                                                  
-    //         {userData.isLoggedIn && <NavLink className={Styles['nav-Item']} to="/cart"><span className='cart-heading'>Cart<span className='cart-number'>{userData?.cart?.length}</span></span></NavLink>}
-    //         {userData.isLoggedIn && <NavLink to='/history' className={Styles['nav-Item']} >History</NavLink>}
-    //         {userData.isLoggedIn && <NavLink to='/logout' className={Styles['nav-Item']} >Logout</NavLink>}
-    //         {userData.isLoggedIn && <ProfileImage imageUrl={userData.image} />}
-
-    // 	</div>
-    // );
 
     return (
         <Navbar bg="light" expand="lg" className="shadow-sm py-3">
@@ -82,15 +68,10 @@ const NavbarApp = () => {
                                     Home
                                 </Nav.Link>
                                 <Nav.Link as={NavLink} to="/history" className="mx-2">
-                                    <Image src={orderHistory} alt="Order History Image" width='30' height='30' className="d-inline-block align-middle" />
+                                    History
                                 </Nav.Link>
                                 <Nav.Link as={NavLink} to="/cart" className="mx-2 position-relative">
-                                    <Image src={cartImage} alt="Order History Image" width='30' height='30' className="d-inline-block align-middle" />
-                                    {userData?.cart?.length > 0 && (
-                                        <Badge bg="danger" pill className="ms-1">
-                                            {userData.cart.length}
-                                        </Badge>
-                                    )}
+                                    Cart
                                 </Nav.Link>
 
                                 <Dropdown align="end" className="ms-3">

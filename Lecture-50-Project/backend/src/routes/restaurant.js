@@ -19,7 +19,9 @@ import {
 	postOrderVerifyPayment,
 	getOrderHistory,
 	postCreateOrder,
-	getAllFoods
+	postAddRestaurantImages,
+	getAllRestauratImages,
+	getAllRestauratFoodItems
 } from "../controller/restaurant.js";
 
 
@@ -32,7 +34,6 @@ router.post("/register", upload.single("coverImage"), postAddRestaurant);
 router.post("/add-cusine-category", postCusineCategoryAdd);
 router.get('/all', getRestaurants)
 router.get('/:restaurantId', getRestaurant)
-router.get('/all-food', getAllFoods)
 
 //CRUD on Food
 router.post("/add-food-item", upload.single("images"), postAddFoodItem);
@@ -41,9 +42,12 @@ router.get("/delete-food-item/:id", getDeleteFoodItem);
 router.get('/get-food-items', getFoodItems)
 router.get('/get-food-item/:id', getFoodItem)
 router.get("/get-all-cusines", getAllCusines);
+router.get('/foods/all-restaurant-food-items', getAllRestauratFoodItems)
 
 // Food -> images
 router.post("/add-food-images/:id", upload.array("images", 6), postAddFoodImages);
+router.post("/add-restaurant-images", upload.array("images", 12), postAddRestaurantImages);
+router.get('/images/all-restaurant-images', getAllRestauratImages)
 
 // CRUD on reviews
 
